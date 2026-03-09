@@ -35,7 +35,7 @@ public class AssSupporter : MonoBehaviour
     {
         // Define the center of the overlap circle
         Vector2 centerPoint = _headPlayer.transform.position;
-        bool canGrab = Vector2.Distance(centerPoint, transform.position) < checkRadius;
+        bool canGrab = Vector2.Distance(centerPoint, _assPlayer.transform.position) < checkRadius;
 
         if (canGrab)
         {
@@ -46,11 +46,11 @@ public class AssSupporter : MonoBehaviour
                     var kb = Keyboard.current;
                     if (kb != null)
                     {
-                        if (kb.sKey.wasReleasedThisFrame && !_isGrabbed)
+                        if (kb.eKey.wasReleasedThisFrame && !_isGrabbed)
                         {
                             GrabHead();
                         }
-                        else if(_isGrabbed && kb.sKey.wasReleasedThisFrame)
+                        else if(_isGrabbed && kb.eKey.wasReleasedThisFrame)
                         {
                             Throw();
                         }
