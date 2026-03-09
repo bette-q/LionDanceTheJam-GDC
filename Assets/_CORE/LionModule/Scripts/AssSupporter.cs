@@ -16,13 +16,12 @@ public class AssSupporter : MonoBehaviour
     
 
     [Header("Interaction Check")]
-    [Tooltip("Position to check for ground contact (usually placed at feet).")]
     [SerializeField] private float checkRadius = 0.15f;
-    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform _hand;
 
     [Header("Input")]
     [SerializeField] private ControlScheme inputScheme = ControlScheme.KeyboardWASD;
+    [SerializeField] private float _throwPower = 20f;
 
     private Rigidbody2D _rb;
     
@@ -98,7 +97,7 @@ public class AssSupporter : MonoBehaviour
         _headPlayer.enabled = true;
         _headPlayer.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
         
-        // _headPlayer.Rigidbody.AddForce(transform.right * + Vector2.up * 10f, ForceMode2D.Impulse);
+        _headPlayer.Rigidbody.AddForce((transform.right + Vector3.up) * _throwPower, ForceMode2D.Impulse);
         
     }
 }
