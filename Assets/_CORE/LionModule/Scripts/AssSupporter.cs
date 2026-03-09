@@ -12,7 +12,9 @@ public class AssSupporter : MonoBehaviour
     }
     
     [SerializeField] private PlayerController _headPlayer;
+    [SerializeField] private HeadGrabber _headGrabber;
     [SerializeField] private PlayerController _assPlayer;
+    [SerializeField] private SpringJoint2D _springJoint2D;
     
 
     [Header("Interaction Check")]
@@ -25,7 +27,7 @@ public class AssSupporter : MonoBehaviour
 
     private Rigidbody2D _rb;
     
-    private bool _isGrabbed;
+    private bool _isGrabbed = false;
     public bool IsGrabbing => _isGrabbed;
     
     // Update is called once per frame
@@ -44,11 +46,11 @@ public class AssSupporter : MonoBehaviour
                     var kb = Keyboard.current;
                     if (kb != null)
                     {
-                        if (kb.sKey.isPressed && !_isGrabbed)
+                        if (kb.sKey.wasReleasedThisFrame && !_isGrabbed)
                         {
                             GrabHead();
                         }
-                        else if(_isGrabbed && !kb.eKey.isPressed)
+                        else if(_isGrabbed && kb.sKey.wasReleasedThisFrame)
                         {
                             Throw();
                         }
@@ -61,11 +63,11 @@ public class AssSupporter : MonoBehaviour
                     var pads = Gamepad.all;
                     if (pads.Count > index && pads[index] != null)
                     {
-                        if (pads[index].buttonEast.isPressed && !_isGrabbed)
+                        if (pads[index].buttonEast.wasReleasedThisFrame && !_isGrabbed)
                         {
                             GrabHead();
                         }
-                        else if(_isGrabbed && !pads[index].buttonEast.isPressed)
+                        else if(_isGrabbed && pads[index].buttonEast.wasReleasedThisFrame)
                         {
                             Throw();
                         }
@@ -78,6 +80,8 @@ public class AssSupporter : MonoBehaviour
 
     private void GrabHead()
     {
+        _headGrabber.enabled = false;
+        
         _headPlayer.transform.SetParent(_hand);
         _headPlayer.enabled = false;
         
@@ -86,18 +90,37 @@ public class AssSupporter : MonoBehaviour
         _headPlayer.Rigidbody.angularVelocity = 0f;
         
         _headPlayer.transform.DOLocalMove(Vector3.zero, 0.25f).SetEase(Ease.OutCubic);
-        _headPlayer.transform.DOLocalRotate(Vector3.zero, 0.25f).SetEase(Ease.OutCubic);
-        
-        _isGrabbed = true;
+        _headPlayer.transform.DOLocalRotate(Vector3.zero, 0.25f).SetEase(Ease.OutCubic)
+            .OnComplete(() => _isGrabbed = true);
+
+        _assPlayer.transform.DORotate(Vector3.zero, 0.5f, RotateMode.Fast);
+
+        _springJoint2D.enabled = false;
+        Debug.Log("Grabbed");
     }
 
     private void Throw()
     {
         _headPlayer.transform.SetParent(null);
-        _headPlayer.enabled = true;
         _headPlayer.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
         
-        _headPlayer.Rigidbody.AddForce((transform.right + Vector3.up) * _throwPower, ForceMode2D.Impulse);
+        Vector3 dir = _headPlayer.transform.position.x < _assPlayer.transform.position.x ? Vector3.left : Vector3.right;
+        dir = (dir + Vector3.up ) * _throwPower;
+        Debug.Log(dir);
+        
+        _headPlayer.Rigidbody.AddForce(dir, ForceMode2D.Impulse);
+        _headPlayer.transform.DOLocalRotate(new Vector3(0, 0, 720), 1f).SetEase(Ease.OutCubic)
+            .OnComplete(() =>
+            {
+                _headPlayer.enabled = true;
+                _headPlayer.transform.localEulerAngles = new Vector3(0, 0, 0); 
+                _springJoint2D.enabled = true;
+                _headGrabber.enabled = true;
+                _isGrabbed = false;
+            });
+            
+
+        Debug.Log("Throw");
         
     }
 }
