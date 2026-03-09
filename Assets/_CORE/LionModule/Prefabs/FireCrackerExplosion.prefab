@@ -4954,7 +4954,7 @@ PointEffector2D:
   m_DistanceScale: 1
   m_ForceSource: 0
   m_ForceTarget: 0
-  m_ForceMode: 0
+  m_ForceMode: 2
   m_LinearDamping: 0
   m_AngularDamping: 0
 --- !u!50 &2042464291238963496

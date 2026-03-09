@@ -112,14 +112,9 @@ public class HeadGrabber : MonoBehaviour
         // Move to target
         Vector3 targetPos3 = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
 
-        // Compute look angle so local +X faces the target (2D: rotate around Z)
-        Vector2 toTarget = (Vector2)(targetPos3 - transform.position);
-        float zAngle = Mathf.Atan2(toTarget.y, toTarget.x) * Mathf.Rad2Deg + 90;
-
-
         // Tween position and rotation in parallel
         var moveTween = transform.DOMove(targetPos3, 0.25f).SetEase(Ease.OutCubic);
-        var rotateTween = transform.DORotate(new Vector3(0f, 0f, zAngle), 0.25f, RotateMode.Fast)
+        var rotateTween = transform.DORotate(new Vector3(0f, 0f, 0), 0.25f, RotateMode.Fast)
             .SetEase(Ease.OutCubic);
 
         DOTween.Sequence()

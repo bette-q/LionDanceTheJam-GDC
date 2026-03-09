@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
         if(_rb.bodyType == RigidbodyType2D.Kinematic) return;
         
         // Ground check using an overlap circle
-        Vector2 checkPos = groundCheck != null ? (Vector2)groundCheck.position : (Vector2)transform.position;
+        Vector2 checkPos = (Vector2)transform.position + Vector2.down;
         _isGrounded = Physics2D.OverlapCircle(checkPos, groundCheckRadius, groundLayer);
 
         // Horizontal movement
