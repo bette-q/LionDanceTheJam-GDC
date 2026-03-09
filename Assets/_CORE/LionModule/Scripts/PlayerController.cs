@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        
         // Gather input in Update using the new Input System (frame-rate dependent)
         float move = 0f;
         _jumpRequested = false; // will be set true if pressed this frame
@@ -102,6 +103,9 @@ public class PlayerController : MonoBehaviour
         else if (_moveInput < -0.01f && _facingRight)
             Flip();
     
+        //can only flip is rigidbody is kinematic
+        if(_rb.bodyType == RigidbodyType2D.Kinematic) return;
+        
         // Ground check using an overlap circle
         Vector2 checkPos = groundCheck != null ? (Vector2)groundCheck.position : (Vector2)transform.position;
         _isGrounded = Physics2D.OverlapCircle(checkPos, groundCheckRadius, groundLayer);
