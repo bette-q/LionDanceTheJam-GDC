@@ -45,7 +45,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         // Update walking and grounded states each frame based on controller
         bool isGrounded = _controller != null && _controller.IsGrounded;
-        bool isWalking = _controller != null && Mathf.Abs(_controller.MoveInput) > 0.01f && isGrounded;
+        bool isWalking = _controller != null && Mathf.Abs(_controller.MoveInput) > 0.01f;
         
         _anim.SetBool(_hashIsGrounded, isGrounded);
         _anim.SetBool(_hashIsWalking, isWalking);

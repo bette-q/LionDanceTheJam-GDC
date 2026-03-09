@@ -174,7 +174,7 @@ MonoBehaviour:
   _headGrabber: {fileID: 1182248500712129272}
   _assPlayer: {fileID: 4912207994393375476}
   _springJoint2D: {fileID: 7809038343672575644}
-  checkRadius: 2.31
+  checkRadius: 3
   _hand: {fileID: 388109638286071866}
   inputScheme: 0
   _throwPower: 5
@@ -1541,11 +1541,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6820002583539484742, guid: bf683e541e386cd4a9590e628acd72d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.692
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 6820002583539484742, guid: bf683e541e386cd4a9590e628acd72d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.059
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7852857734541468837, guid: bf683e541e386cd4a9590e628acd72d2, type: 3}
       propertyPath: m_LocalPosition.x
