@@ -9,6 +9,7 @@ public class SpringSnapper : MonoBehaviour
     [SerializeField] private Transform _target;
 
     private float  _oldFrequency;
+    private bool _isTooLong = false;
     
     void Start()
     {
@@ -17,16 +18,24 @@ public class SpringSnapper : MonoBehaviour
     
     private void Update()
     {
-        if (Vector2.Distance(_target.position, transform.position) > _maxDistance)
+        float dist = Vector2.Distance(_target.position, transform.position);
+        
+        if (dist > _maxDistance)
         {
+            AudioManager.Instance.PlaySfx("shortStretch");
             _springJoint2D.frequency = _springStrength;
             Invoke(nameof(ResetSnap), _snapDuration);
+        }else if (dist > _maxDistance * 0.4 && !_isTooLong)
+        {
+            AudioManager.Instance.PlaySfx("longStretch");
+            _isTooLong = true;
         }
     }
 
     private void ResetSnap()
     {
-        _springJoint2D.frequency = _oldFrequency;        
+        _springJoint2D.frequency = _oldFrequency;
+        _isTooLong = false;
     }
 
 

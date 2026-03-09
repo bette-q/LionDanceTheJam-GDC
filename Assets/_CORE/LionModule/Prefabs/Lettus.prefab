@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8563654313277435340}
   - component: {fileID: 521461436288686143}
   - component: {fileID: 7913902863442927106}
+  - component: {fileID: 2273821002877151208}
   m_Layer: 0
   m_Name: Lettus
   m_TagString: Untagged
@@ -97,6 +98,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2273821002877151208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2633808748209559199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c18add48a4576e41bf6ac1584db1149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collectable
+  _collectVFX: {fileID: 3999611098882651081, guid: 111c8fed27a0bcd41ae29ec5ba38cc3b, type: 3}
 --- !u!1 &7024054077038662471
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float jumpForce = 12f;
     [SerializeField] private float rotateForce = 12f;
-
+    
     [Header("Ground Check")]
     [Tooltip("Position to check for ground contact (usually placed at feet).")]
     [SerializeField] private Transform groundCheck;
@@ -126,6 +126,7 @@ public class PlayerController : MonoBehaviour
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             // Notify listeners that a jump occurred
             Jumped?.Invoke();
+            AudioManager.Instance.PlaySfx("jump");
         }
         _jumpRequested = false;
     }

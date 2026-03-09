@@ -8,6 +8,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private string paramIsGrounded = "isGrounded";
     [SerializeField] private string paramJumpTrigger = "jump";
     [SerializeField] private string paramHeadGrab = "isHeadGrab";
+    [SerializeField] private GameObject _footStepSfx;
 
     [SerializeField] private Animator _anim;
     private PlayerController _controller;
@@ -50,6 +51,8 @@ public class PlayerAnimator : MonoBehaviour
         _anim.SetBool(_hashIsGrounded, isGrounded);
         _anim.SetBool(_hashIsWalking, isWalking);
 
+        _footStepSfx.SetActive(isWalking);
+        
         if (_headGrabber != null)
         {
             _anim.SetBool(_hashHeadGrab, _headGrabber.IsGrabbing);       
