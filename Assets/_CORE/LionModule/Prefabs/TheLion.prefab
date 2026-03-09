@@ -5104,7 +5104,7 @@ MonoBehaviour:
   EndOffset: {x: 0, y: 0}
   ropeSegLen: 0.1
   _ropeSegmentCount: 15
-  lineWidth: 0.7
+  lineWidth: 1.06
   forceGravity: {x: 0, y: -7}
 --- !u!120 &3087505734175444783
 LineRenderer:
@@ -5153,20 +5153,42 @@ LineRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 17
   m_MaskInteraction: 0
   m_Positions:
-  - {x: 0, y: 0.5, z: 0}
-  - {x: 2, y: 0.5, z: 1}
+  - {x: 191.2073, y: 20.472282, z: 0}
+  - {x: 191.00363, y: 20.608923, z: 0}
+  - {x: 190.80023, y: 20.746307, z: 1}
+  - {x: 190.59726, y: 20.884823, z: 1}
+  - {x: 190.39485, y: 21.024794, z: 1}
+  - {x: 190.19312, y: 21.166445, z: 1}
+  - {x: 189.99214, y: 21.30992, z: 1}
+  - {x: 189.79198, y: 21.455254, z: 1}
+  - {x: 189.5926, y: 21.602392, z: 1}
+  - {x: 189.39398, y: 21.751196, z: 1}
+  - {x: 189.19604, y: 21.901445, z: 1}
+  - {x: 188.99867, y: 22.052862, z: 1}
+  - {x: 188.80171, y: 22.20512, z: 1}
+  - {x: 188.60503, y: 22.357866, z: 1}
+  - {x: 188.5261, y: 22.419252, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 1.0374709
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 1.0217153
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1.0217153
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -5178,8 +5200,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.8588236, g: 0.7490196, b: 0.74509805, a: 1}
-      key1: {r: 0.8941177, g: 0.49803925, b: 0.5058824, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
