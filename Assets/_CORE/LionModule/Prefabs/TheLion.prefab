@@ -81,7 +81,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AssSupporter
   _headPlayer: {fileID: 6704938599942755318}
   _assPlayer: {fileID: 4912207994393375476}
-  checkRadius: 0.15
+  _springJoint2D: {fileID: 7809038343672575644}
+  checkRadius: 1.19
   _hand: {fileID: 388109638286071866}
   inputScheme: 0
   _throwPower: 20
