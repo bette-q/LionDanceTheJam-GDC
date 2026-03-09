@@ -115,7 +115,7 @@ public class AssSupporter : MonoBehaviour
                 _headPlayer.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
         
                 Vector3 dir = _headPlayer.transform.position.x < _assPlayer.transform.position.x ? Vector3.left : Vector3.right;
-                dir = (dir + Vector3.up ) * _throwPower;
+                dir = (dir + Vector3.up * 2 ) * _throwPower;
                 _headPlayer.Rigidbody.AddForce(dir, ForceMode2D.Impulse);
             })
             .SetEase(Ease.OutCubic)
