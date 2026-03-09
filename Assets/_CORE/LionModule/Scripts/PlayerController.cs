@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float jumpForce = 12f;
+    [SerializeField] private float rotateForce = 12f;
 
     [Header("Ground Check")]
     [Tooltip("Position to check for ground contact (usually placed at feet).")]
@@ -107,6 +108,9 @@ public class PlayerController : MonoBehaviour
 
         // Horizontal movement
         _rb.linearVelocity = new Vector2(_moveInput * moveSpeed, _rb.linearVelocity.y);
+        
+        // angular movement
+        _rb.AddTorque(_moveInput * -rotateForce, ForceMode2D.Force);
 
         // Jump (impulse) when requested and grounded
         if (_jumpRequested && _isGrounded)
