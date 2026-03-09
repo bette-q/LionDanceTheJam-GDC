@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     // Exposed read-only properties and jump event for animation/scripts
     public float MoveInput => _moveInput;
     public bool IsGrounded => _isGrounded;
+    
+    public Rigidbody2D Rigidbody => _rb;
     public event Action Jumped;
 
     void Awake()
