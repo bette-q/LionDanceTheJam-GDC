@@ -78,8 +78,14 @@ public class AssSupporter : MonoBehaviour
         }
     }
 
+    private void FlipUp()
+    {
+        _assPlayer.transform.DORotate(Vector3.zero, 0.35f, RotateMode.Fast);
+    }
+
     private void GrabHead()
     {
+        FlipUp();
         _headGrabber.enabled = false;
         
         _headPlayer.transform.SetParent(_hand);
@@ -93,23 +99,26 @@ public class AssSupporter : MonoBehaviour
         _headPlayer.transform.DOLocalRotate(Vector3.zero, 0.25f).SetEase(Ease.OutCubic)
             .OnComplete(() => _isGrabbed = true);
 
-        _assPlayer.transform.DORotate(Vector3.zero, 0.5f, RotateMode.Fast);
-
         _springJoint2D.enabled = false;
         Debug.Log("Grabbed");
     }
 
     private void Throw()
     {
-        _headPlayer.transform.SetParent(null);
-        _headPlayer.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
+        FlipUp();
         
-        Vector3 dir = _headPlayer.transform.position.x < _assPlayer.transform.position.x ? Vector3.left : Vector3.right;
-        dir = (dir + Vector3.up ) * _throwPower;
-        Debug.Log(dir);
+        _headPlayer.transform.DOLocalRotate(new Vector3(0, 0, 720), 1f)
+            .SetDelay(0.35f)
+            .OnStart(() =>
+            {
+                _headPlayer.transform.SetParent(null);
+                _headPlayer.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
         
-        _headPlayer.Rigidbody.AddForce(dir, ForceMode2D.Impulse);
-        _headPlayer.transform.DOLocalRotate(new Vector3(0, 0, 720), 1f).SetEase(Ease.OutCubic)
+                Vector3 dir = _headPlayer.transform.position.x < _assPlayer.transform.position.x ? Vector3.left : Vector3.right;
+                dir = (dir + Vector3.up ) * _throwPower;
+                _headPlayer.Rigidbody.AddForce(dir, ForceMode2D.Impulse);
+            })
+            .SetEase(Ease.OutCubic)
             .OnComplete(() =>
             {
                 _headPlayer.enabled = true;

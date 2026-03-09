@@ -119,8 +119,8 @@ ScriptedImporter:
     spritePosition: {x: 56, y: 230}
   - name: Front_RightFluff
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.2909252, y: 0.78047556}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -141,8 +141,8 @@ ScriptedImporter:
     spritePosition: {x: 228, y: 127}
   - name: Front_LeftFluff
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.76698226, y: 0.77781224}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
