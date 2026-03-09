@@ -190,9 +190,10 @@ GameObject:
   - component: {fileID: 1021684631867036025}
   - component: {fileID: 6449231618816296920}
   - component: {fileID: 110515155264080739}
+  - component: {fileID: 4402508298740018241}
   m_Layer: 0
   m_Name: Eye
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5015,6 +5016,42 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!58 &4402508298740018241
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829815447995859686}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.37629998
 --- !u!1 &2441124252043692784
 GameObject:
   m_ObjectHideFlags: 0
@@ -5733,7 +5770,7 @@ Transform:
   m_GameObject: {fileID: 4884277678611967736}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7175, y: 2.182384, z: -11}
+  m_LocalPosition: {x: 0.7175, y: 1.0219543, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5915,9 +5952,10 @@ GameObject:
   - component: {fileID: 6875251422118104864}
   - component: {fileID: 2634557322636418511}
   - component: {fileID: 4447569419231954954}
+  - component: {fileID: 2926858171685119649}
   m_Layer: 0
   m_Name: Eye (1)
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10740,6 +10778,42 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!58 &2926858171685119649
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6927686591391625243}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.37629998
 --- !u!1 &7098919661984179624
 GameObject:
   m_ObjectHideFlags: 0
@@ -11303,7 +11377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8854572098852827484, guid: bf683e541e386cd4a9590e628acd72d2, type: 3}
       propertyPath: rotateForce
-      value: 0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8854572098852827484, guid: bf683e541e386cd4a9590e628acd72d2, type: 3}
       propertyPath: groundLayer.m_Bits
@@ -11383,9 +11457,9 @@ SpringJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
-  m_Distance: 0.5
+  m_Distance: 0.8
   m_DampingRatio: 0.2
-  m_Frequency: 0.4
+  m_Frequency: 0.2
 --- !u!114 &1834622074742044220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11623,7 +11697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8854572098852827484, guid: bf683e541e386cd4a9590e628acd72d2, type: 3}
       propertyPath: rotateForce
-      value: 0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8854572098852827484, guid: bf683e541e386cd4a9590e628acd72d2, type: 3}
       propertyPath: groundLayer.m_Bits

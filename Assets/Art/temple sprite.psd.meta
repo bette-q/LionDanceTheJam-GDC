@@ -271,6 +271,94 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: temple sprite_7
+      rect:
+        serializedVersion: 2
+        x: 876
+        y: 666
+        width: 68
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdff3557f42199e409fc61bc78fdb2f1
+      internalID: -1286674388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temple sprite_8
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 867
+        width: 202
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 79, y: 0, z: 67, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fe8c5e9a63f28248955c4e2640c999c
+      internalID: 1304070109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temple sprite_9
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 82
+        width: 129
+        height: 140
+      alignment: 9
+      pivot: {x: 0.5240654, y: 0.4722822}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7763cad5700698a4299890d73bcf3ade
+      internalID: 486129285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temple sprite_10
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 250
+        width: 392
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 120, y: 65, z: 95, w: 71}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29fae71943479934da2427c72175f0c0
+      internalID: 1220105981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -287,11 +375,15 @@ TextureImporter:
     nameFileIdTable:
       temple sprite_0: 3306454115049182371
       temple sprite_1: -7113141312218700244
+      temple sprite_10: 1220105981
       temple sprite_2: 1842615136744184245
       temple sprite_3: 6148787047563102076
       temple sprite_4: -2005682313801176156
       temple sprite_5: -8367086686930625376
       temple sprite_6: -4684374244248991520
+      temple sprite_7: -1286674388
+      temple sprite_8: 1304070109
+      temple sprite_9: 486129285
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
