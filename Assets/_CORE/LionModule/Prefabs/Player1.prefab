@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 636234474388726901}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -471,6 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 6
   jumpForce: 12
+  rotateForce: 12
   groundCheck: {fileID: 6604527183149307638}
   groundCheckRadius: 0.53
   groundLayer:
@@ -538,4 +539,5 @@ MonoBehaviour:
   paramIsWalking: isWalking
   paramIsGrounded: isGrounded
   paramJumpTrigger: jump
+  paramHeadGrab: isHeadGrab
   _anim: {fileID: 73149327715167439}
