@@ -471,7 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 6
   jumpForce: 12
-  rotateForce: 12
+  rotateForce: 5
   groundCheck: {fileID: 6604527183149307638}
   groundCheckRadius: 0.53
   groundLayer:
