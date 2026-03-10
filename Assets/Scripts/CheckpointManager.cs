@@ -28,11 +28,13 @@ public class CheckpointManager : MonoBehaviour
     private Quaternion _rootStartRotation;
     private Vector3[] _bodyLocalPositions;
     private Quaternion[] _bodyLocalRotations;
+    private Vector3[] _bodyLocalScales;
     private Transform[] _bodyOriginalParents;
     private float[] _springDistances;
     private float[] _springFrequencies;
     private float[] _springDampingRatios;
     private bool[] _springEnabledStates;
+    private bool _hasCachedDefaults;
 
     private void Awake()
     {
@@ -57,8 +59,11 @@ public class CheckpointManager : MonoBehaviour
             fallCheckBodies = bodiesToReset;
         }
 
-        CacheBodyLocalState();
-        CacheSpringState();
+    }
+
+    private void Start()
+    {
+        CacheDefaultsFromCurrentHierarchy();
     }
 
     private void Update()
@@ -104,12 +109,25 @@ public class CheckpointManager : MonoBehaviour
             return;
         }
 
+        if (!_hasCachedDefaults)
+        {
+            CacheDefaultsFromCurrentHierarchy();
+        }
+
         respawnRoot.position = _checkpointPosition;
         respawnRoot.rotation = _rootStartRotation;
 
         RestoreBodyLocalState();
         RestoreSpringState();
         ResetBodies();
+    }
+
+    [ContextMenu("Recache Respawn Defaults")]
+    public void CacheDefaultsFromCurrentHierarchy()
+    {
+        CacheBodyLocalState();
+        CacheSpringState();
+        _hasCachedDefaults = true;
     }
 
     private void ResetBodies()
@@ -169,6 +187,7 @@ public class CheckpointManager : MonoBehaviour
 
         _bodyLocalPositions = new Vector3[bodiesToReset.Length];
         _bodyLocalRotations = new Quaternion[bodiesToReset.Length];
+        _bodyLocalScales = new Vector3[bodiesToReset.Length];
         _bodyOriginalParents = new Transform[bodiesToReset.Length];
 
         for (int i = 0; i < bodiesToReset.Length; i++)
@@ -181,18 +200,19 @@ public class CheckpointManager : MonoBehaviour
 
             _bodyLocalPositions[i] = rb.transform.localPosition;
             _bodyLocalRotations[i] = rb.transform.localRotation;
+            _bodyLocalScales[i] = rb.transform.localScale;
             _bodyOriginalParents[i] = rb.transform.parent;
         }
     }
 
     private void RestoreBodyLocalState()
     {
-        if (bodiesToReset == null || _bodyLocalPositions == null || _bodyLocalRotations == null || _bodyOriginalParents == null)
+        if (bodiesToReset == null || _bodyLocalPositions == null || _bodyLocalRotations == null || _bodyLocalScales == null || _bodyOriginalParents == null)
         {
             return;
         }
 
-        int count = Mathf.Min(bodiesToReset.Length, _bodyLocalPositions.Length, _bodyLocalRotations.Length, _bodyOriginalParents.Length);
+        int count = Mathf.Min(bodiesToReset.Length, _bodyLocalPositions.Length, _bodyLocalRotations.Length, _bodyLocalScales.Length, _bodyOriginalParents.Length);
         for (int i = 0; i < count; i++)
         {
             Rigidbody2D rb = bodiesToReset[i];
@@ -209,6 +229,7 @@ public class CheckpointManager : MonoBehaviour
 
             rb.transform.localPosition = _bodyLocalPositions[i];
             rb.transform.localRotation = _bodyLocalRotations[i];
+            rb.transform.localScale = _bodyLocalScales[i];
         }
     }
 
