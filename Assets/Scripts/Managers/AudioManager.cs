@@ -16,6 +16,8 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Library")]
     [SerializeField] private AudioEntry[] audioEntries;
     [SerializeField] private string defaultBgmId;
+    [SerializeField] private string menuBgmId;
+    [SerializeField] private string gameBgmId;
     [SerializeField] private bool playDefaultBgmOnStart = true;
 
     [Header("Audio Output")]
@@ -52,17 +54,48 @@ public class AudioManager : MonoBehaviour
         }
 
         bgmSource.playOnAwake = false;
+        bgmSource.loop = true;
+        bgmSource.spatialBlend = 0f;
         sfxSource.playOnAwake = false;
+        sfxSource.loop = false;
+        sfxSource.spatialBlend = 0f;
         _masterVolume = Mathf.Clamp01(defaultMasterVolume);
         _bgmVolume = Mathf.Clamp01(defaultBgmVolume);
         _sfxVolume = Mathf.Clamp01(defaultSfxVolume);
         RefreshOutputVolumes();
         BuildLookup();
 
-        if (playDefaultBgmOnStart && !string.IsNullOrWhiteSpace(defaultBgmId))
+        if (playDefaultBgmOnStart)
         {
-            PlayBgm(defaultBgmId, true);
+            if (!string.IsNullOrWhiteSpace(menuBgmId))
+            {
+                PlayMenuBgm();
+            }
+            else if (!string.IsNullOrWhiteSpace(defaultBgmId))
+            {
+                PlayBgm(defaultBgmId, true);
+            }
         }
+    }
+
+    public bool PlayMenuBgm()
+    {
+        if (string.IsNullOrWhiteSpace(menuBgmId))
+        {
+            return false;
+        }
+
+        return PlayBgm(menuBgmId, true);
+    }
+
+    public bool PlayGameBgm()
+    {
+        if (string.IsNullOrWhiteSpace(gameBgmId))
+        {
+            return false;
+        }
+
+        return PlayBgm(gameBgmId, true);
     }
 
     public bool Play(string id, bool loop = false)
