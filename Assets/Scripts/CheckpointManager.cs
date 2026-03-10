@@ -69,7 +69,19 @@ public class CheckpointManager : MonoBehaviour
     private void Update()
     {
         Keyboard kb = Keyboard.current;
-        if (manualRespawnByKey && kb != null && kb[manualRespawnKey].wasPressedThisFrame)
+        bool keyboardRespawn = kb != null && kb[manualRespawnKey].wasPressedThisFrame;
+        bool gamepadRespawn = false;
+        var pads = Gamepad.all;
+        for (int i = 0; i < pads.Count; i++)
+        {
+            if (pads[i] != null && pads[i].buttonWest.wasPressedThisFrame)
+            {
+                gamepadRespawn = true;
+                break;
+            }
+        }
+
+        if (manualRespawnByKey && (keyboardRespawn || gamepadRespawn))
         {
             Respawn();
             return;
