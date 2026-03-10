@@ -111,6 +111,7 @@ public class AssSupporter : MonoBehaviour
             .SetDelay(0.35f)
             .OnStart(() =>
             {
+                AudioManager.Instance.PlaySfx("throw");
                 _headPlayer.transform.SetParent(null);
                 _headPlayer.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
         
