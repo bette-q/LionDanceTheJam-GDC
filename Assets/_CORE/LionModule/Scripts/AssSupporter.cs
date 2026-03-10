@@ -53,6 +53,9 @@ public class AssSupporter : MonoBehaviour
                         else if(_isGrabbed && (kb.eKey.wasReleasedThisFrame || kb.upArrowKey.wasReleasedThisFrame))
                         {
                             Throw();
+                        }else if (_isGrabbed && _assPlayer.transform.position.y > _headPlayer.transform.position.y)
+                        {
+                            Drop();
                         }
                     }
                     break;
@@ -70,6 +73,9 @@ public class AssSupporter : MonoBehaviour
                         else if(_isGrabbed && pads[index].buttonEast.wasReleasedThisFrame)
                         {
                             Throw();
+                        }else if (_isGrabbed && _assPlayer.transform.position.y > _headPlayer.transform.position.y)
+                        {
+                            Drop();
                         }
                     }
                     break;
@@ -100,9 +106,32 @@ public class AssSupporter : MonoBehaviour
             .OnComplete(() => _isGrabbed = true);
 
         _springJoint2D.enabled = false;
-        Debug.Log("Grabbed");
     }
 
+    private void Drop()
+    {
+        _headPlayer.transform.DOLocalRotate(new Vector3(0, 0, 720), 1f)
+            .OnStart(() =>
+            {
+                AudioManager.Instance.PlaySfx("throw");
+                _headPlayer.transform.SetParent(null);
+                _headPlayer.Rigidbody.bodyType = RigidbodyType2D.Dynamic;
+        
+                Vector3 dir = _headPlayer.transform.position.x < _assPlayer.transform.position.x ? Vector3.left : Vector3.right;
+                dir = (dir + Vector3.up * 2 ) * _throwPower * 0.3f;
+                _headPlayer.Rigidbody.AddForce(dir, ForceMode2D.Impulse);
+            })
+            .SetEase(Ease.OutCubic)
+            .OnComplete(() =>
+            {
+                _headPlayer.enabled = true;
+                _headPlayer.transform.localEulerAngles = new Vector3(0, 0, 0); 
+                _springJoint2D.enabled = true;
+                _headGrabber.enabled = true;
+                _isGrabbed = false;
+            });
+    }
+    
     private void Throw()
     {
         FlipUp();
@@ -130,7 +159,5 @@ public class AssSupporter : MonoBehaviour
             });
             
 
-        Debug.Log("Throw");
-        
     }
 }

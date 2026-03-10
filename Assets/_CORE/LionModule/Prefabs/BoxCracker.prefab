@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 160611830789870168}
   - component: {fileID: 4582993866538057226}
   - component: {fileID: 1764217034973504782}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BoxCracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ Rigidbody2D:
   m_Mass: 16.79
   m_LinearDamping: 2.07
   m_AngularDamping: 0.19
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
