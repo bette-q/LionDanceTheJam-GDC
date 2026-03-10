@@ -77,11 +77,7 @@ public class HeadGrabber : MonoBehaviour
                             SnapToTarget(closestPoint);
                         }
                     }
-                    break;
-                }
-                case ControlScheme.Gamepad1:
-                {
-                    int index = inputScheme == ControlScheme.Gamepad1 ? 0 : 1;
+                    int index = 1;
                     var pads = Gamepad.all;
                     if (pads.Count > index && pads[index] != null)
                     {

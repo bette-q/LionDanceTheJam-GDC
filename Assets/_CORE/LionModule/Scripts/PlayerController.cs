@@ -9,8 +9,6 @@ public class PlayerController : MonoBehaviour
     {
         KeyboardWASD,
         KeyboardArrows,
-        Gamepad1,
-        Gamepad2
     }
 
     [Header("Movement Settings")]
@@ -64,6 +62,18 @@ public class PlayerController : MonoBehaviour
                     if (_isGrounded && (kb.spaceKey.wasPressedThisFrame || kb.wKey.wasPressedThisFrame))
                         _jumpRequested = true;
                 }
+                
+                var pads = Gamepad.all;
+                if (pads.Count > 0 && pads[0] != null)
+                {
+                    var pad = pads[0];
+                    float stickX = pad.leftStick.x.ReadValue();
+                    float dpadX = pad.dpad.x.ReadValue();
+                    float analogX = Mathf.Abs(stickX) > Mathf.Abs(dpadX) ? stickX : dpadX;
+                    move = Mathf.Clamp(analogX, -1f, 1f);
+                    if (_isGrounded && pad.buttonSouth.wasPressedThisFrame)
+                        _jumpRequested = true;
+                }
                 break;
             }
             case ControlScheme.KeyboardArrows:
@@ -76,16 +86,11 @@ public class PlayerController : MonoBehaviour
                     if (_isGrounded && kb.upArrowKey.wasPressedThisFrame)
                         _jumpRequested = true;
                 }
-                break;
-            }
-            case ControlScheme.Gamepad1:
-            case ControlScheme.Gamepad2:
-            {
-                int index = inputScheme == ControlScheme.Gamepad1 ? 0 : 1;
+                
                 var pads = Gamepad.all;
-                if (pads.Count > index && pads[index] != null)
+                if (pads.Count > 1 && pads[1] != null)
                 {
-                    var pad = pads[index];
+                    var pad = pads[1];
                     float stickX = pad.leftStick.x.ReadValue();
                     float dpadX = pad.dpad.x.ReadValue();
                     float analogX = Mathf.Abs(stickX) > Mathf.Abs(dpadX) ? stickX : dpadX;
