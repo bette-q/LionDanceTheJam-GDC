@@ -2777,11 +2777,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 65b75aa327c5ab6499c6145a504df8ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -152.93
+      value: -153
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 65b75aa327c5ab6499c6145a504df8ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.4
+      value: 4.41
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 65b75aa327c5ab6499c6145a504df8ed, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5457,7 +5457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -552.34, y: -145.68}
+  m_AnchoredPosition: {x: -552.58, y: -146.22}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &874139653
@@ -5549,7 +5549,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 146.35468, w: 0}
+  m_margin: {x: 0, y: 0, z: 131.61041, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5620,7 +5620,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press A to Jump
+  m_text: 'Press A to Jump
+
+
+    Press X to Reset'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 791029f388d01f640b99c2c8dc1543ff, type: 2}
   m_sharedMaterial: {fileID: -975735938581296897, guid: 791029f388d01f640b99c2c8dc1543ff, type: 2}
@@ -5647,8 +5650,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 5
@@ -6199,19 +6202,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: adee2324fdb68494bb31a5b52f9b595a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: adee2324fdb68494bb31a5b52f9b595a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: adee2324fdb68494bb31a5b52f9b595a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -149.07
+      value: -148.77
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: adee2324fdb68494bb31a5b52f9b595a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.54
+      value: 4.53
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: adee2324fdb68494bb31a5b52f9b595a, type: 3}
       propertyPath: m_LocalPosition.z
