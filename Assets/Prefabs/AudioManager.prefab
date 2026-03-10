@@ -52,6 +52,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 84a2ac4ddc4df2d47b317eb23c72ac58, type: 3}
   - id: shortStretch
     clip: {fileID: 8300000, guid: a60c570d34de30f44b60863f89d9f34a, type: 3}
+  - id: throw
+    clip: {fileID: 8300000, guid: 5da1915ce6c760f40a4d6645de17bbcd, type: 3}
   bgmSource: {fileID: 0}
   sfxSource: {fileID: 6330554366082583901}
   defaultMasterVolume: 1
