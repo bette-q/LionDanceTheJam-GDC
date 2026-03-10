@@ -50,7 +50,7 @@ public class AssSupporter : MonoBehaviour
                         {
                             GrabHead();
                         }
-                        else if(_isGrabbed && kb.eKey.wasReleasedThisFrame)
+                        else if(_isGrabbed && (kb.eKey.wasReleasedThisFrame || kb.upArrowKey.wasReleasedThisFrame))
                         {
                             Throw();
                         }

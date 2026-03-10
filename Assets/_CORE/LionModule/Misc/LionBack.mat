@@ -12,8 +12,10 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - DOODLE_ON
   - GLOWLIGHT_ON
-  - OUTBASE_ON
+  - SHADOW_ON
+  - WAVEUV_ON
   m_InvalidKeywords:
   - _GLOWAFFECTLIGHT_ON
   m_LightmapFlags: 4
@@ -59,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 2800000, guid: 667ee81f7c45c7c42a1d0dfa66cd4c18, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -168,7 +170,7 @@ Material:
     - _InnerOutlineAlpha: 1
     - _InnerOutlineGlow: 4
     - _InnerOutlineThickness: 1
-    - _LitAmount: 1
+    - _LitAmount: 0.416
     - _MaxXUV: 1
     - _MaxYUV: 1
     - _MinXUV: 0
@@ -228,9 +230,9 @@ Material:
     - _WarpScale: 0.5
     - _WarpSpeed: 8
     - _WarpStrength: 0.025
-    - _WaveAmount: 7
-    - _WaveSpeed: 10
-    - _WaveStrength: 7.5
+    - _WaveAmount: 14.1
+    - _WaveSpeed: 7.7
+    - _WaveStrength: 16
     - _WaveX: 0
     - _WaveY: 0.5
     - _ZTestMode: 4
