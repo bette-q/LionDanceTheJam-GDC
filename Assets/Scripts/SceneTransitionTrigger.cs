@@ -1,16 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneTransitionTrigger : MonoBehaviour
 {
     [SerializeField] private string targetSceneName;
-    [SerializeField] private string player1Tag = "Player1";
-    [SerializeField] private string player2Tag = "Player2";
+    [SerializeField] private string player1Tag = "Player";
+    [SerializeField] private string player2Tag = "Player";
+    [SerializeField] private int requiredPlayersInside = 2;
+    [SerializeField] private bool useSpecificPlayerParts = false;
+    [SerializeField] private Transform playerPartA;
+    [SerializeField] private Transform playerPartB;
     [SerializeField] private bool triggerOnce = true;
 
     private bool _hasTriggered;
-    private bool _player1Inside;
-    private bool _player2Inside;
+    private readonly HashSet<Transform> _playersInside = new HashSet<Transform>();
+    private bool _isPartAInside;
+    private bool _isPartBInside;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,37 +25,68 @@ public class SceneTransitionTrigger : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag(player1Tag))
+        if (useSpecificPlayerParts)
         {
-            _player1Inside = true;
+            if (IsColliderFromTarget(other, playerPartA))
+            {
+                _isPartAInside = true;
+            }
+
+            if (IsColliderFromTarget(other, playerPartB))
+            {
+                _isPartBInside = true;
+            }
+
+            TryLoadScene();
+            return;
         }
-        else if (other.CompareTag(player2Tag))
-        {
-            _player2Inside = true;
-        }
-        else
+
+        Transform playerRoot = GetMatchingPlayerRoot(other);
+        if (playerRoot == null)
         {
             return;
         }
 
+        _playersInside.Add(playerRoot);
         TryLoadScene();
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag(player1Tag))
+        if (useSpecificPlayerParts)
         {
-            _player1Inside = false;
+            if (IsColliderFromTarget(other, playerPartA))
+            {
+                _isPartAInside = false;
+            }
+
+            if (IsColliderFromTarget(other, playerPartB))
+            {
+                _isPartBInside = false;
+            }
+
+            return;
         }
-        else if (other.CompareTag(player2Tag))
+
+        Transform playerRoot = GetMatchingPlayerRoot(other);
+        if (playerRoot == null)
         {
-            _player2Inside = false;
+            return;
         }
+
+        _playersInside.Remove(playerRoot);
     }
 
     private void TryLoadScene()
     {
-        if (!_player1Inside || !_player2Inside)
+        if (useSpecificPlayerParts)
+        {
+            if (!_isPartAInside || !_isPartBInside)
+            {
+                return;
+            }
+        }
+        else if (_playersInside.Count < requiredPlayersInside)
         {
             return;
         }
@@ -61,5 +98,65 @@ public class SceneTransitionTrigger : MonoBehaviour
 
         _hasTriggered = true;
         SceneManager.LoadScene(targetSceneName);
+    }
+
+    private static bool IsColliderFromTarget(Collider2D other, Transform target)
+    {
+        if (other == null || target == null)
+        {
+            return false;
+        }
+
+        if (other.transform == target || other.transform.IsChildOf(target))
+        {
+            return true;
+        }
+
+        if (other.attachedRigidbody != null)
+        {
+            Transform rbTransform = other.attachedRigidbody.transform;
+            if (rbTransform == target || rbTransform.IsChildOf(target))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private Transform GetMatchingPlayerRoot(Collider2D other)
+    {
+        if (other == null)
+        {
+            return null;
+        }
+
+        Transform root = other.transform.root;
+        if (IsMatchingTag(root))
+        {
+            return root;
+        }
+
+        if (other.attachedRigidbody != null)
+        {
+            Transform rbRoot = other.attachedRigidbody.transform.root;
+            if (IsMatchingTag(rbRoot))
+            {
+                return rbRoot;
+            }
+        }
+
+        return null;
+    }
+
+    private bool IsMatchingTag(Transform target)
+    {
+        if (target == null)
+        {
+            return false;
+        }
+
+        string targetTag = target.tag;
+        return targetTag == player1Tag || targetTag == player2Tag;
     }
 }
