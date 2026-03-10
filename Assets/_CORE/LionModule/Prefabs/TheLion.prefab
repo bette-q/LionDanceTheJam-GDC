@@ -5554,7 +5554,7 @@ Transform:
   m_GameObject: {fileID: 3384944027371757755}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.71751404, y: 0, z: 0}
+  m_LocalPosition: {x: 0.7175007, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10958,7 +10958,7 @@ Transform:
   m_GameObject: {fileID: 8041914040118610414}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.205, y: -0.12, z: 0}
+  m_LocalPosition: {x: -0.205, y: 0.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -11011,7 +11011,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 19
+  m_SortingOrder: 13
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3103913464883788525, guid: 65b75aa327c5ab6499c6145a504df8ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11036,13 +11036,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.ShadowCaster2D
   m_ShadowGroup: 0
-  m_Priority: 19
+  m_Priority: 17
   m_ComponentVersion: 5
   m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
-  m_AlphaCutoff: 0.1
+  m_AlphaCutoff: 0.219
   m_ApplyToSortingLayers: 2f1675b3c7772059
   m_ShapePath:
   - {x: -1.315, y: -1.12, z: 0}
@@ -11059,14 +11059,14 @@ MonoBehaviour:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 1.2649841, y: 1.0699921, z: 0}
+      m_Extent: {x: 1.2799988, y: 1.0899963, z: 0}
     m_EdgeProcessing: 1
-    m_TrimEdge: 0.05
+    m_TrimEdge: 0.42
     m_FlipX: 1
     m_FlipY: 0
-    m_InitialTrim: 0
+    m_InitialTrim: 0.07
   m_CastingOption: 1
-  m_PreviousTrimEdge: 0.05
+  m_PreviousTrimEdge: 0.42
   m_PreviousEdgeProcessing: 1
   m_PreviousShadowCastingSource: 2
   m_PreviousShadowShape2DSource: {fileID: 3581419766307397100}
@@ -11754,6 +11754,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9031335790979952096, guid: bf683e541e386cd4a9590e628acd72d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8283936075398435380}
+    - targetCorrespondingSourceObject: {fileID: 9031335790979952096, guid: bf683e541e386cd4a9590e628acd72d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5861291124887129763}
   m_SourcePrefab: {fileID: 100100000, guid: bf683e541e386cd4a9590e628acd72d2, type: 3}
 --- !u!4 &799431086915956179 stripped
 Transform:
@@ -11810,6 +11813,43 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.55, y: 0.78}
+  m_Direction: 1
+--- !u!70 &5861291124887129763
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4872799419855154760}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.34}
   m_Size: {x: 1.55, y: 0.78}
   m_Direction: 1
 --- !u!114 &4912207994393375476 stripped
