@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Library")]
     [SerializeField] private AudioEntry[] audioEntries;
+    [SerializeField] private string defaultBgmId;
+    [SerializeField] private bool playDefaultBgmOnStart = true;
 
     [Header("Audio Output")]
     [SerializeField] private AudioSource bgmSource;
@@ -56,6 +58,11 @@ public class AudioManager : MonoBehaviour
         _sfxVolume = Mathf.Clamp01(defaultSfxVolume);
         RefreshOutputVolumes();
         BuildLookup();
+
+        if (playDefaultBgmOnStart && !string.IsNullOrWhiteSpace(defaultBgmId))
+        {
+            PlayBgm(defaultBgmId, true);
+        }
     }
 
     public bool Play(string id, bool loop = false)
