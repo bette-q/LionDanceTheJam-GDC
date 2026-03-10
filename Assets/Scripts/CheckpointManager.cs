@@ -74,7 +74,7 @@ public class CheckpointManager : MonoBehaviour
         var pads = Gamepad.all;
         for (int i = 0; i < pads.Count; i++)
         {
-            if (pads[i] != null && pads[i].buttonWest.wasPressedThisFrame)
+            if (pads[i] != null && pads[i].dpad.up.wasPressedThisFrame)
             {
                 gamepadRespawn = true;
                 break;

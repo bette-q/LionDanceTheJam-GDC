@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class MainMenuUIManager : MonoBehaviour
 {
@@ -9,7 +11,12 @@ public class MainMenuUIManager : MonoBehaviour
     private Button _startButton;
     private Button _settingButton;
     private Button _exitButton;
+    private GameObject _menuPanel;
     private GameObject _settingPanel;
+    private GameObject _introPanel;
+    private readonly List<GameObject> _introScreens = new List<GameObject>();
+    private bool _isIntroPlaying;
+    private int _introIndex;
 
     private Slider _masterSlider;
     private Slider _sfxSlider;
@@ -20,6 +27,14 @@ public class MainMenuUIManager : MonoBehaviour
         AutoHook();
         WireEvents();
         SyncSlidersFromAudio();
+
+        AudioManager audio = AudioManager.Instance;
+        if (audio != null)
+        {
+            audio.PlayMenuBgm();
+        }
+
+        SetIntroVisible(false);
     }
 
     private void AutoHook()
@@ -27,12 +42,26 @@ public class MainMenuUIManager : MonoBehaviour
         Transform startBtn = FindByNameInScene("StartBtn");
         Transform settingBtn = FindByNameInScene("SettingBtn");
         Transform exitBtn = FindByNameInScene("ExitBtn");
+        Transform menuPanel = FindByNameInScene("MenuPanel");
         Transform settingPanel = FindByNameInScene("SettingPanel");
+        Transform introPanel = FindByNameInScene("IntroPanel");
 
         if (startBtn != null) _startButton = startBtn.GetComponent<Button>();
         if (settingBtn != null) _settingButton = settingBtn.GetComponent<Button>();
         if (exitBtn != null) _exitButton = exitBtn.GetComponent<Button>();
+        if (menuPanel != null) _menuPanel = menuPanel.gameObject;
         if (settingPanel != null) _settingPanel = settingPanel.gameObject;
+        if (introPanel != null) _introPanel = introPanel.gameObject;
+
+        _introScreens.Clear();
+        if (introPanel != null)
+        {
+            for (int i = 0; i < introPanel.childCount; i++)
+            {
+                Transform child = introPanel.GetChild(i);
+                _introScreens.Add(child.gameObject);
+            }
+        }
 
         Transform master = FindByNameInScene("Master");
         Transform sfx = FindByNameInScene("SFX");
@@ -54,6 +83,19 @@ public class MainMenuUIManager : MonoBehaviour
         {
             Transform slider = bgm.Find("Slider");
             if (slider != null) _bgmSlider = slider.GetComponent<Slider>();
+        }
+    }
+
+    private void Update()
+    {
+        if (!_isIntroPlaying)
+        {
+            return;
+        }
+
+        if (IsAdvanceIntroPressed())
+        {
+            AdvanceIntro();
         }
     }
 
@@ -116,7 +158,15 @@ public class MainMenuUIManager : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene(startSceneName);
+        if (_introScreens.Count > 0)
+        {
+            _isIntroPlaying = true;
+            _introIndex = 0;
+            ShowIntroScreen(_introIndex);
+            return;
+        }
+
+        StartGameScene();
     }
 
     private void OnSettingClicked()
@@ -196,5 +246,80 @@ public class MainMenuUIManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void AdvanceIntro()
+    {
+        _introIndex++;
+        if (_introIndex >= _introScreens.Count)
+        {
+            _isIntroPlaying = false;
+            StartGameScene();
+            return;
+        }
+
+        ShowIntroScreen(_introIndex);
+    }
+
+    private void ShowIntroScreen(int index)
+    {
+        if (_introScreens.Count == 0)
+        {
+            return;
+        }
+
+        SetIntroVisible(true);
+        for (int i = 0; i < _introScreens.Count; i++)
+        {
+            _introScreens[i].SetActive(i == index);
+        }
+    }
+
+    private void SetIntroVisible(bool visible)
+    {
+        if (_introPanel != null)
+        {
+            _introPanel.SetActive(visible);
+        }
+    }
+
+    private bool IsAdvanceIntroPressed()
+    {
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            return true;
+        }
+
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+        {
+            return true;
+        }
+
+        var pads = Gamepad.all;
+        for (int i = 0; i < pads.Count; i++)
+        {
+            if (pads[i] != null && pads[i].buttonSouth.wasPressedThisFrame)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void StartGameScene()
+    {
+        if (_menuPanel != null)
+        {
+            _menuPanel.SetActive(false);
+        }
+
+        AudioManager audio = AudioManager.Instance;
+        if (audio != null)
+        {
+            audio.PlayGameBgm();
+        }
+
+        SceneManager.LoadScene(startSceneName);
     }
 }
