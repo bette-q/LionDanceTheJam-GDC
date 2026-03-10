@@ -58,11 +58,8 @@ public class AssSupporter : MonoBehaviour
                             Drop();
                         }
                     }
-                    break;
-                }
-                case ControlScheme.Gamepad2:
-                {
-                    int index = inputScheme == ControlScheme.Gamepad2 ? 1 : 0;
+                    
+                    int index = 0;
                     var pads = Gamepad.all;
                     if (pads.Count > index && pads[index] != null)
                     {
@@ -70,9 +67,13 @@ public class AssSupporter : MonoBehaviour
                         {
                             GrabHead();
                         }
-                        else if(_isGrabbed && pads[index].buttonEast.wasReleasedThisFrame)
+                        else if (_isGrabbed && (pads[index].buttonEast.wasReleasedThisFrame))
                         {
                             Throw();
+                        }
+                        else if(_isGrabbed && pads.Count > 1 && pads[1] != null && (pads[1].buttonSouth.wasReleasedThisFrame)) 
+                        {
+                                Throw();
                         }else if (_isGrabbed && _assPlayer.transform.position.y > _headPlayer.transform.position.y)
                         {
                             Drop();
