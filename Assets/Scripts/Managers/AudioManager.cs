@@ -26,8 +26,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float defaultMasterVolume = 1f;
     [SerializeField, Range(0f, 1f)] private float defaultBgmVolume = 1f;
     [SerializeField, Range(0f, 1f)] private float defaultSfxVolume = 1f;
+    [SerializeField] private float sfxRetriggerBlockSeconds = 0.05f;
 
     private readonly Dictionary<string, AudioClip> _clipById = new Dictionary<string, AudioClip>(StringComparer.Ordinal);
+    private readonly Dictionary<string, float> _lastSfxPlayTimeById = new Dictionary<string, float>(StringComparer.Ordinal);
     private float _masterVolume;
     private float _bgmVolume;
     private float _sfxVolume;
@@ -59,6 +61,9 @@ public class AudioManager : MonoBehaviour
         sfxSource.playOnAwake = false;
         sfxSource.loop = false;
         sfxSource.spatialBlend = 0f;
+        sfxSource.dopplerLevel = 0f;
+        sfxSource.pitch = 1f;
+        sfxSource.clip = null;
         _masterVolume = Mathf.Clamp01(defaultMasterVolume);
         _bgmVolume = Mathf.Clamp01(defaultBgmVolume);
         _sfxVolume = Mathf.Clamp01(defaultSfxVolume);
@@ -172,6 +177,16 @@ public class AudioManager : MonoBehaviour
             return false;
         }
 
+        float now = Time.unscaledTime;
+        if (sfxRetriggerBlockSeconds > 0f &&
+            _lastSfxPlayTimeById.TryGetValue(id, out float lastTime) &&
+            now - lastTime < sfxRetriggerBlockSeconds)
+        {
+            return false;
+        }
+
+        _lastSfxPlayTimeById[id] = now;
+        sfxSource.loop = false;
         sfxSource.PlayOneShot(clip, Mathf.Clamp01(volumeScale));
         return true;
     }
